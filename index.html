@@ -12,41 +12,42 @@
             <section>
                 <div class="display-4">Buscar Usuário Github</div>
                 <form>
-                    <div class="row">
-                        <div class="col-lg-6">
+                    <div class="row justify-content-center">
+                        <div class=" col-6">
                              <div class="mb-3">
-                                 <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Digite um usuario">
+                                 <input type="text" class="form-control mt-2" id="inputName" placeholder="Digite um usuario">
+                                 <div class="mt-1" id="error"></div>
                             </div>
                         </div>
+                        
                     </div>
-                    <button class="btn btn-primary mt-4">Pesquisar</button>
+                    <button  type="button" class="btn btn-primary mt-4" onclick= "search()">Pesquisar</button>
             </section>
 
 
             <section>
                 <div class="display-4 mt-4">Dados do Usuario:</div>
-                <div class="name">teste</div>
-                <div class="company">teste</div>
-                <div class="url">
-                    <img  class= "shadow rounded " src="https://avatars.githubusercontent.com/u/17340839?v=4" alt="perfil img" width="200px" height="200px">
-                </div>
+                <div id="name"></div>
+                <div id="company">teste</div>
+                <div id="html_url"></div>
+                <div id="avatar_url"></div>
         </section>
             <section>
 
                 <div class="display-4 mt-5">Pesquisados:</div>
                 <div class="row mt-3">
                     <div class="col">
-                        <div class="url">
+                        <div class="avatar-url">
+                        <img  class= "shadow rounded " src="https://avatars.githubusercontent.com/u/17340839?v=4" alt="perfil img" width="100px" height="100px">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="avatar-url">
                             <img  class= "shadow rounded " src="https://avatars.githubusercontent.com/u/17340839?v=4" alt="perfil img" width="100px" height="100px">
                         </div>
                     </div>
                     <div class="col">
-                        <div class="url">
-                            <img  class= "shadow rounded " src="https://avatars.githubusercontent.com/u/17340839?v=4" alt="perfil img" width="100px" height="100px">
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="url">
+                        <div class="avatar-url">
                             <img  class= "shadow rounded " src="https://avatars.githubusercontent.com/u/17340839?v=4" alt="perfil img" width="100px" height="100px">
                         </div>
                     </div>
@@ -55,6 +56,9 @@
             </section>
 
     </div>
+   
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="./script.js"></script>
   </body>
 </html>
