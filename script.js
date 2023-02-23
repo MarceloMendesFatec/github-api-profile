@@ -1,36 +1,60 @@
-function search() {
-    var userName = document.getElementById("inputName").value;
+var usersHistory = [];
 
-    var url = `https://api.github.com/users/${userName}`;
+
+function search() {
+    var username = document.getElementById("inputName").value;
+
+    var url = `https://api.github.com/users/${username}`;
 
     $.getJSON(url, (user) => {
-      setDataUser(user);
-      clearError();
+        showUserData(user);
 
-    }).fail( () => {
-       setDataUser({});
-        showError();
+        if (isNew(user)) {
+            save(user);
+            showNewUserHistory(user);
+        }
+
+        clearError();
+    }).fail(() => {
+        showUserData({});
+        showError("Não encontrado!");
     });
+
+}
+
+function save(user) {
+    usersHistory.push(user);
+}
+
+function isNew(user) {
+    return usersHistory.filter((u) => u.login === user.login).length == 0;
+}
+
+function showNewUserHistory(user) {
+    document.getElementById("history").innerHTML += `
+    <div class="col">
+      <img id="avatar_url" src=${user.avatar_url} width="110" height="110" class="shadow rounded">
+    </div>
+`
+}
+
+function showError(msg) {
+    document.getElementById("error").innerHTML = `<div class='alert alert-danger mt-1' role='alert'>${msg}</div>`;
+}
+
+function clearError() {
+    document.getElementById("error").innerHTML = "";
 }
 
 
-
-
-function showError(){
-    document.getElementById("error").innerHTML = "<div class='alert alert-danger' 'role=alert'> Nao Encontrado ! </div>";
-
-};
-
-function clearError(){
-    document.getElementById("error").innerHTML = "";
-};
-
-
-function setDataUser(user){ 
+function showUserData(user) {
     document.getElementById("name").innerHTML = user.name || "";
-    document.getElementById("company").innerHTML = user.company || "";
     document.getElementById("html_url").innerHTML = user.html_url || "";
-    document.getElementById("avatar_url").innerHTML = user.avatar_url ? 
-                                                   ` <img  src=${user.avatar_url} class= "shadow rounded " 
-                                                    width="200px" height="200px"> ` : "";
-};
+    document.getElementById("company").innerHTML = user.company || "";
+
+    document.getElementById("avatar_url").innerHTML = user.avatar_url ?
+        `
+                                                       <img  src=${user.avatar_url} width="220" height="220" class="shadow rounded">
+                                                      ` :
+        "";
+}
